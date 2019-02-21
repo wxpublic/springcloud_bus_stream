@@ -1,5 +1,7 @@
 # springcloud_bus_stream
-消息驱动，简化消息中间件使用复杂度，涉及概念：通道、绑定；其内部封装RabbitMQ的交换机、队列，开发人员无需关心
+项目跑起来的前提：是事先安装Erlang环境和RabbitMQ服务；详情参见：https://blog.csdn.net/sheinenggaosuwo/article/details/87858623
+
+消息驱动：简化消息中间件使用复杂度，涉及概念：通道、绑定；其内部封装RabbitMQ的交换机、队列，开发人员无需关心
 
 # 消息驱动原理
 绑定器：
@@ -15,3 +17,5 @@
 
 •	Binder: Stream中另外一个抽象层。通过不同的Binder可以实现与不同消息中间件的整合，比如上面的示例我们所使用的就是针对Kafka的Binder，通过Binder提供统一的消息收发接口，从而使得我们可以根据实际需要部署不同的消息中间件，或者根据实际生产中所部署的消息中间件来调整我们的配置。
 
+# 切换kafka消息中间件
+本案例底层采用RabbitMQ作为底层消息中间件，配置文件没有配置rabbitMQ，因为默认获取本地服务，如果需要切换到kafka则需要以下两步：1、在配置文件添加kafka配置；2、替换kafka Maven依赖 <artifactId>spring-cloud-starter-stream-kafka</artifactId>
